@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  :root {
+    /* ink #385987 -> 215 41% 37% */
+    /* accent #B2BFD1 -> 215 25% 76% */
+    /* accentdark #385987 -> 215 41% 37% */
+    /* body #000000 -> 0 0% 0% */
+    /* muted #333333 -> 0 0% 20% */
+    /* rule #C7C7C7 -> 0 0% 78% */
+    /* sidetxt #F5F7FA -> 216 33% 97% */
+
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 215 41% 37%;
+    --primary-foreground: 216 33% 97%;
+    --secondary: 215 25% 76%;
+    --secondary-foreground: 215 41% 37%;
+    --muted: 216 33% 97%;
+    --muted-foreground: 0 0% 20%;
+    --accent: 215 25% 76%;
+    --accent-foreground: 215 41% 37%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 0 0% 78%;
+    --input: 0 0% 78%;
+    --ring: 215 41% 37%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 215 41% 14%;
+    --foreground: 216 33% 97%;
+    --card: 215 41% 18%;
+    --card-foreground: 216 33% 97%;
+    --popover: 215 41% 18%;
+    --popover-foreground: 216 33% 97%;
+    --primary: 215 25% 76%;
+    --primary-foreground: 215 41% 20%;
+    --secondary: 215 30% 25%;
+    --secondary-foreground: 216 33% 97%;
+    --muted: 215 30% 25%;
+    --muted-foreground: 215 20% 70%;
+    --accent: 215 30% 25%;
+    --accent-foreground: 216 33% 97%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 20% 98%;
+    --border: 215 30% 25%;
+    --input: 215 30% 25%;
+    --ring: 215 25% 76%;
+  }
+}
+
+.blog-post h1 {
+  font-size: 2.5em;
+}
+
+.blog-post h2 {
+  font-size: 2em;
+}
+
+.blog-post h3 {
+  font-size: 1.75em;
+}
+
+.blog-post h4 {
+  font-size: 1.5em;
+}
+
+.blog-post h5 {
+  font-size: 1.25em;
+}
+
+.blog-post h6 {
+  font-size: 1em;
+}
+
+.blog-post p {
+  margin: 0 0 1.5em;
+}
+
+.blog-post a {
+  color: #385987;
+  text-decoration: none;
+}
+
+.blog-post a:hover {
+  text-decoration: underline;
+}
+
+.blog-post strong {
+  font-weight: bold;
+}
+
+.blog-post em {
+  font-style: italic;
+}
+
+.blog-post blockquote {
+  font-style: italic;
+  color: #333333;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  border-left: 5px solid #c7c7c7;
+}
+
+.blog-post ul, ol {
+  margin: 0 0 1.5em 1.5em;
+}
+
+.blog-post li {
+  margin-bottom: 0.5em;
+}
+
+.blog-post code {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #f5f7fa;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #385987;
+}
+
+.blog-post pre {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #f5f7fa;
+  padding: 10px;
+  border-radius: 4px;
+  overflow: auto;
+}
+
+.blog-post img {
+  max-width: 100%;
+  height: auto;
+}
+
+.blog-post figure {
+  margin: 0 0 1.5em;
+}
+
+.blog-post figcaption {
+  font-size: 0.9em;
+  color: #333333;
+  text-align: center;
+}
+
+.blog-post hr {
+  border: 0;
+  height: 1px;
+  background: #c7c7c7;
+  margin: 2em 0;
+}
+
+@media (max-width: 768px) {
+  .blog-post h1 {
+    font-size: 2em;
+  }
+
+  .blog-post h2 {
+    font-size: 1.75em;
+  }
+
+  .blog-post h3 {
+    font-size: 1.5em;
+  }
+
+  .blog-post h4 {
+    font-size: 1.25em;
+  }
+
+  .blog-post h5 {
+    font-size: 1em;
+  }
+
+  .blog-post h6 {
+    font-size: 0.875em;
+  }
+}
+
+body.dark {
+  background: #385987;
+  color: #f5f7fa;
+}

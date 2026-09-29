@@ -1,0 +1,299 @@
+{
+  "visual": {
+    "navbar": {
+      "links": [
+	{
+	"label": "Skills",
+	"path": "#skills"
+	},
+        {
+          "label": "Experience",
+          "path": "#experience"
+        },
+        {
+          "label": "Projects",
+          "path": "#projects"
+        },
+        {
+          "label": "Education",
+          "path": "#education"
+        }
+      ]
+    },
+    "home": {
+      "sections": {
+        "banner": true,
+        "experience": true,
+        "project": true,
+        "education": true,
+        "testimonial": true
+      }
+    }
+  },
+  "personalInfo": {
+    "name": "Esdras Shaa Prombo",
+    "title": "M.Sc. Data Science",
+    "location": "Linden, Germany",
+    "bio": "Data science focused on modelling, analysing and visualising numerical and text data for prediction and pattern recognition. Driven by devotion and perseverance."
+  },
+  "contactInfo": {
+    "email": "shaaprombo@gmail.com",
+    "phone": "+49 157 3261 4412",
+    "linkedin": "https://www.linkedin.com/in/shaa-prombo-esdras/",
+    "github": "https://github.com/EsdrasShaa",
+    "twitter": "#!",
+    "website": "#!"
+  },
+  "skills": {
+  "programming": [
+    "Python",
+    "R",
+    "C++"
+  ],
+  "reportsOffice": [
+    "LaTeX",
+    "Microsoft Word",
+    "PowerPoint",
+    "Excel"
+  ],
+  "dataVisualization": [
+    "SQL",
+    "PostgreSQL",
+    "Matplotlib",
+    "Seaborn",
+    "ggplot2",
+    "Power BI"
+  ],
+  "machineLearning": [
+    "scikit-learn",
+    "PyTorch",
+    "NumPy",
+    "pandas",
+    "SciPy",
+    "Gensim",
+    "Keras",
+    "Transformers",
+    "LangChain"
+  ],
+  "timeSeriesEconometrics": [
+    "vars",
+    "tseries",
+    "urca",
+    "tsDyn",
+    "aTSA"
+  ],
+  "tools": [
+    "Apache Airflow",
+    "Docker",
+    "Firebase",
+    "FastAPI",
+    "Linux",
+    "Windows",
+    "Intel VTune",
+    "Git"
+  ],
+  "mathematics": [
+    "Probability and Statistics",
+    "Econometrics",
+    "Algebra",
+    "Analyse",
+    "Topological Data Analysis"
+  ],
+  "personalStrengths": [
+    "Teamwork",
+    "Determination",
+    "Reliability",
+    "Time Management",
+    "Leadership"
+  ]
+},
+  "projects": [
+    {
+      "id": "1",
+      "title": "Master's Thesis",
+      "description": "Investigated how immigration discourse relates to economic conditions in Germany.",
+      "technologies": [
+        "Python",
+        "R",
+        "NLP",
+        "LLMs"
+      ],
+      "live_url": "#!",
+      "code_repo_url": "https://github.com/esdrasshaa/migration-politics-economy-empirical.git",
+      "cover": "/assets/project_1.png"
+    },
+    {
+	"id": "2",
+	"title": "ETL and Sentiment Analysis Framework",
+	"description": "An automated framework that extracts and processes Bundestag speeches to determine fiscal policy sentiment, turning raw parliamentary text into structured, analysable insights.",
+	"technologies": [
+	"Python",
+	"ETL Pipelines (Apache Airflow)",
+	"NLP",
+	"Docker"
+	],
+	"live_url": "#!",
+	"code_repo_url": "https://github.com/esdrasshaa/bundestag-fiscal-sentiment.git",
+	"cover": "/assets/project_2.jpeg"
+	},
+    {
+	  "id": "3",
+	  "title": "Multivariate Analysis of Raman Spectra",
+	  "description": "An unsupervised learning approach to classify tissue samples using Raman spectroscopy. Spectra from healthy and diseased animals are reduced with PCA and UMAP and clustered with k-Means to identify distinct cell types and detect differences between health states.",
+	  "technologies": [
+	    "Python",
+	    "Raman Spectroscopy",
+	    "PCA",
+	    "UMAP",
+	    "k-Means"
+	  ],
+	  "live_url": "#!",
+	  "code_repo_url": "#!",
+	  "cover": "/assets/project_3.png"
+	},
+	{
+	"id": "4",
+	"title": "Mini Machine Learning Library in C++",
+	"description": "A small object-oriented machine learning library written in modern C++. It includes a DataFrame for numeric data, CSV loading, scalers such as Min-Max and Standard, and several ML algorithms. It is built with CMake as a reusable static library and comes with unit tests and example programs.",
+	"technologies": [
+	"C++",
+	"CMake",
+	"Git",
+	"Unit Testing"
+	],
+	"live_url": "#!",
+	"code_repo_url": "https://github.com/esdrasshaa/kleine-machine-learning-bibliothek-projekt.git",
+	"cover": "/assets/project_4.png"
+	},
+	{
+	"id": "5",
+	"title": "Inversion Effect in Neural Networks",
+	"description": "A research project testing whether the face inversion effect also appears in CNNs trained for object categorization. Pretrained AlexNet, VGG16 and ResNet were evaluated on 1,000 ImageNet images from 100 categories, shown upright and rotated by 180°. Features from the penultimate layer were classified with an SVM, and the inversion effect was scored per category. All three models showed a consistent but small inversion effect. Its overall size was similar across architectures, but the categories it affected most differed between models.",
+	"technologies": [
+	"Python",
+	"SciPy",
+	"CNNs",
+	"SVM",
+	"ImageNet"
+	],
+	"live_url": "#!",
+	"code_repo_url": "https://github.com/VCCN-lab/inversion_effects_esdras.git",
+	"cover": "/assets/project_5.png"
+	}
+  ],
+  "workExperience": [
+    {
+      "id": "1",
+      "company": "Justus-Liebig-Universität Gießen",
+      "companyWebsite": "https://www.uni-giessen.de/en",
+      "role": "Research Intern",
+      "startDate": "24.10.2025",
+      "endDate": "24.02.2026",
+      "technologies": [
+        "Apache Airflow",
+        "Docker",
+        "FastAPI",
+        "Python",
+        "PostgreSQL"
+      ],
+      "keyResponsibilities": [
+	"Automatically downloaded all German Bundestag plenary protocols for each quarter.",
+	"Preprocessed the protocols using the provided preprocessing pipeline.",
+	"Calculated fiscal policy sentiment scores for individual speeches using DynamicDoc2Vec based on Latifi et al. (2024).",
+	"Aggregated speech-level sentiment scores into quarterly measures for total, government, and opposition speeches.",
+	"Built an automated workflow using Apache Airflow, PostgreSQL, and FastAPI for data processing and monitoring."
+	]
+    },
+    {
+      "id": "2",
+      "company": "Justus-Liebig-Universität Gießen",
+      "companyWebsite": "https://www.uni-giessen.de/en",
+      "role": "Research Intern",
+      "startDate": "15.11.2024",
+      "endDate": "15.06.2025",
+      "technologies": [
+	"Python",
+	"Raman Spectroscopy",
+	"PCA",
+	"UMAP",
+	"k-Means Clustering",
+	"Unsupervised Learning"
+	],
+       "keyResponsibilities": [
+	"Applied unsupervised learning to Raman spectra as a new, data-driven alternative to conventional tissue sample classification.",
+	"Explored and preprocessed spectral imaging data (intensity vs. wavelength, spatial rasters), testing different normalisations and background corrections.",
+	"Reduced dimensionality with PCA and UMAP, and visualised principal components as colour-coded tissue images and distribution plots.",
+	"Clustered spectra with k-Means to identify distinct cell types, and validated cluster count and representative spectra against the tissue images.",
+	"Compared tissue samples from healthy and diseased animals to detect spectral differences between health states."
+	]
+    }
+  ],
+  "education": [
+  {
+    "id": "1",
+    "institution": "Justus-Liebig-Universität Gießen",
+    "degree": "Master of Science in Data Science",
+    "description": "Ongoing master's program with 107 of at least 120 ECTS completed. Core modules include Advanced Data Analytics, High Performance Computing, Information Visualization, Artificial Intelligence I and II, Object-Oriented Programming for Data Science, Topological Data Analysis, and project modules in Data Science and Artificial Intelligence. Electives in Advanced Econometrics and Time Series Econometrics, plus a professional practice module.",
+    "startDate": "Oct 2023",
+    "endDate": "Present"
+  },
+  {
+    "id": "2",
+    "institution": "IELTS (British Council, IDP, Cambridge English)",
+    "degree": "IELTS Academic, Overall Band 6.5 (CEFR B2)",
+    "description": "Certified English proficiency with scores of 6.5 in Listening, 8.0 in Reading, 6.0 in Writing and 6.0 in Speaking.",
+    "startDate": "Apr 2026",
+    "endDate": "May 2026"
+  },
+  {
+    "id": "3",
+    "institution": "NVIDIA Deep Learning Institute",
+    "degree": "Certificates of Competency in LLMs and Deep Learning",
+    "description": "Completed three NVIDIA certificate courses: Building RAG Agents with LLMs, Rapid Application Development with Large Language Models, and Fundamentals of Deep Learning. Gained hands-on experience building retrieval-augmented generation agents, developing LLM-powered applications, and training deep learning models.",
+    "startDate": "Nov 2025",
+    "endDate": "Nov 2025"
+  },
+  {
+    "id": "4",
+    "institution": "Philipps-Universität Marburg (Studienkolleg Mittelhessen)",
+    "degree": "DSH-2 German Language Certificate",
+    "description": "Passed the German language exam for university admission (DSH) with the overall result DSH-2, which certifies the language ability required for unrestricted admission to all degree programs at German universities.",
+    "startDate": "Mar 2023",
+    "endDate": "Nov 2022"
+  },
+  {
+  "id": "5",
+  "institution": "Goethe-Institut, Cameroon",
+  "degree": "German as a Foreign Language",
+  "description": "Studied German as a foreign language at the Goethe-Institut in Cameroon, building the language foundation for studying in Germany. This was followed by the DSH-2 certificate, which qualifies for unrestricted admission to German universities.",
+  "startDate": "Sep 2020",
+  "endDate": "Nov 2022"
+},
+{
+    "id": "6",
+    "institution": "Université de Dschang, Cameroon",
+    "degree": "Licence (Bachelor) in Computer Science",
+    "description": "Completed three years of a fundamental computer science program (L1 to L3) with annual averages between 12.98 and 13.59 out of 20. Coursework covered algorithm design and analysis, software engineering, databases, data structures, web application engineering, data engineering, and object-oriented and C++ programming.",
+    "startDate": "Oct 2017",
+    "endDate": "Aug 2020"
+  }
+],
+  "testimonials": [
+    {
+      "id": "1",
+      "name": "Jane Smith",
+      "avatar": "/assets/testimonial_1_avatar.jpg",
+      "title": "Project Manager",
+      "company": "Tech Solutions Inc.",
+      "feedback": "John is a fantastic developer who consistently delivers high-quality work. His ability to solve complex problems is impressive."
+    },
+    {
+      "id": "2",
+      "name": "Mike Johnson",
+      "avatar": "/assets/testimonial_2_avatar.jpg",
+      "title": "CEO",
+      "company": "Web Innovators LLC",
+      "feedback": "John is a highly skilled developer who brings a lot of value to our projects. His expertise in full stack development is top-notch."
+    }
+  ]
+}
