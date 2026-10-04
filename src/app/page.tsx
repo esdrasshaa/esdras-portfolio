@@ -23,7 +23,6 @@ import {
 } from "@radix-ui/react-icons";
 
 import { Avatar } from "@/components/ui/avatar";
-import { Download } from "lucide-react";
 import {
   Download,
   Code2,
