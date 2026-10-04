@@ -71,8 +71,11 @@ export interface WorkExperience {
   keyResponsibilities: string[];
 }
 
+export type EducationCategory = "degree" | "certificate" | "language";
+
 export interface Education {
   id: string;
+  category: EducationCategory;
   institution: string;
   degree: string;
   description: string;

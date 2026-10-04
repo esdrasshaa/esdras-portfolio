@@ -231,14 +231,16 @@
   "education": [
   {
     "id": "1",
+    "category": "degree",
     "institution": "Justus-Liebig-Universität Gießen",
     "degree": "Master of Science in Data Science",
-    "description": "Ongoing master's program with 107 of at least 120 ECTS completed. Core modules include Advanced Data Analytics, High Performance Computing, Information Visualization, Artificial Intelligence I and II, Object-Oriented Programming for Data Science, Topological Data Analysis, and project modules in Data Science and Artificial Intelligence. Electives in Advanced Econometrics and Time Series Econometrics, plus a professional practice module.",
+    "description": "Ongoing master's program. Core modules include Advanced Data Analytics, High Performance Computing, Information Visualization, Artificial Intelligence I and II, Object-Oriented Programming for Data Science, Topological Data Analysis, and project modules in Data Science and Artificial Intelligence. Electives in Advanced Econometrics and Time Series Econometrics, plus a professional practice module.",
     "startDate": "Oct 2023",
     "endDate": "Nov 2026"
   },
   {
     "id": "2",
+    "category": "language",
     "institution": "IELTS (British Council, IDP, Cambridge English)",
     "degree": "IELTS Academic, Overall Band (CEFR B2)",
     "description": "Certified English proficiency.",
@@ -247,6 +249,7 @@
   },
   {
     "id": "3",
+    "category": "certificate",
     "institution": "NVIDIA Deep Learning Institute",
     "degree": "Certificates of Competency in LLMs and Deep Learning",
     "description": "Completed three NVIDIA certificate courses: Building RAG Agents with LLMs, Rapid Application Development with Large Language Models, and Fundamentals of Deep Learning. Gained hands-on experience building retrieval-augmented generation agents, developing LLM-powered applications, and training deep learning models.",
@@ -255,25 +258,28 @@
   },
   {
     "id": "4",
+    "category": "language",
     "institution": "Philipps-Universität Marburg (Studienkolleg Mittelhessen)",
     "degree": "DSH-2 German Language Certificate",
     "description": "Passed the German language exam for university admission (DSH) with the overall result DSH-2, which certifies the language ability required for unrestricted admission to all degree programs at German universities.",
-    "startDate": "Mar 2023",
+    "startDate": "Nov 2022",
+    "endDate": "Mar 2023"
+  },
+  {
+    "id": "5",
+    "category": "language",
+    "institution": "Goethe-Institut, Cameroon",
+    "degree": "German as a Foreign Language",
+    "description": "Studied German as a foreign language at the Goethe-Institut in Cameroon, building the language foundation for studying in Germany. This was followed by the DSH-2 certificate, which qualifies for unrestricted admission to German universities.",
+    "startDate": "Sep 2020",
     "endDate": "Nov 2022"
   },
   {
-  "id": "5",
-  "institution": "Goethe-Institut, Cameroon",
-  "degree": "German as a Foreign Language",
-  "description": "Studied German as a foreign language at the Goethe-Institut in Cameroon, building the language foundation for studying in Germany. This was followed by the DSH-2 certificate, which qualifies for unrestricted admission to German universities.",
-  "startDate": "Sep 2020",
-  "endDate": "Nov 2022"
-},
-{
     "id": "6",
+    "category": "degree",
     "institution": "Université de Dschang, Cameroon",
     "degree": "Licence (Bachelor) in Computer Science",
-    "description": "Completed a three-year fundamental computer science program (L1-L3) with an overall grade of B. Coursework covered algorithm design and analysis, data structures, databases, software engineering, web application engineering, data engineering, and object-oriented programming (including C++)",
+    "description": "Completed a three-year fundamental computer science program (L1-L3) with an overall grade of B. Coursework covered algorithm design and analysis, data structures, databases, software engineering, web application engineering, data engineering, and object-oriented programming (including C++).",
     "startDate": "Oct 2017",
     "endDate": "Aug 2020"
   }
