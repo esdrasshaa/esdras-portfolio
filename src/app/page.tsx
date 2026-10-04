@@ -58,6 +58,12 @@ const skillCategories = [
   },
 ] as const;
 
+const educationCategories = [
+  { key: "degree", title: "Degrees" },
+  { key: "certificate", title: "Certificates" },
+  { key: "language", title: "Language Certificates" },
+] as const;
+
 export default async function Home() {
   const data = await getJSONData();
   const posts = await getBlogPosts();
@@ -128,48 +134,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      
-      {/* Skills Section */}
-      <section
-	  id="skills"
-	  className="container max-w-5xl mx-auto py-12 md:py-16 lg:py-20"
-	>
-	  <h2 className="font-bold text-3xl md:text-5xl mb-12">
-	    Skills
-	  </h2>
-
-	  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-	    {skillCategories.map((category) => (
-	      <Card
-		key={category.key}
-		className={
-		  category.key === "machineLearning" ||
-		  category.key === "tools"
-		    ? "md:col-span-2"
-		    : ""
-		}
-	      >
-		<CardHeader>
-		  <CardTitle>{category.title}</CardTitle>
-		</CardHeader>
-
-		<CardContent>
-		  <div className="flex flex-wrap gap-2">
-		    {data.skills[category.key].map((skill) => (
-		      <Badge
-			  key={skill}
-			  variant="outline"
-			  className="px-3 py-1 bg-transparent text-foreground border-border"
-			>
-			  {skill}
-			</Badge>
-		    ))}
-		  </div>
-		</CardContent>
-	      </Card>
-	    ))}
-	  </div>
-	</section>
 
       {/* Experience Section */}
       <section
@@ -272,25 +236,81 @@ export default async function Home() {
 
       {/* Education Section */}
       <section
-        id="education"
-        className="container max-w-5xl mx-auto py-12 md:py-16 lg:py-20"
-      >
-        <h2 className="font-bold text-3xl md:text-5xl mb-12">Education</h2>
-        <div className="relative pl-6 after:absolute after:inset-y-0 after:left-0 after:w-px after:bg-gray-500/20 dark:after:bg-gray-400/20 grid gap-10">
-          {data.education.map((ed) => (
-            <div key={ed.id} className="grid gap-1 relative">
-              <div className="aspect-square w-3 bg-gray-900 rounded-full absolute left-0 translate-x-[-29.5px] z-10 top-2 dark:bg-gray-50" />
+	id="education"
+	className="container max-w-5xl mx-auto py-12 md:py-16 lg:py-20"
+	>
+	<h2 className="font-bold text-3xl md:text-5xl mb-12">Education</h2>
+	<div className="grid gap-12">
+	{educationCategories.map((cat) => {
+	const items = data.education.filter((ed) => ed.category === cat.key);
+	if (items.length === 0) return null;
 
-              <h4 className="text-xl font-medium">{ed.degree}</h4>
-              <h5 className="font-medium">{ed.institution}</h5>
-              <div className="text-gray-500 dark:text-gray-400">
-                {ed.startDate} - {ed.endDate}
-              </div>
-              <p className="mt-2 text-sm text-gray-500">{ed.description}</p>
-            </div>
-          ))}
-        </div>
+	return (
+	<div key={cat.key}>
+	  <h3 className="text-2xl font-semibold mb-6">{cat.title}</h3>
+	  <div className="relative pl-6 after:absolute after:inset-y-0 after:left-0 after:w-px after:bg-gray-500/20 dark:after:bg-gray-400/20 grid gap-10">
+	    {items.map((ed) => (
+	      <div key={ed.id} className="grid gap-1 relative">
+		<div className="aspect-square w-3 bg-gray-900 rounded-full absolute left-0 translate-x-[-29.5px] z-10 top-2 dark:bg-gray-50" />
+
+		<h4 className="text-xl font-medium">{ed.degree}</h4>
+		<h5 className="font-medium">{ed.institution}</h5>
+		<div className="text-gray-500 dark:text-gray-400">
+		  {ed.startDate} - {ed.endDate}
+		</div>
+		{ed.description && (
+		  <p className="mt-2 text-sm text-gray-500">{ed.description}</p>
+		)}
+	      </div>
+	    ))}
+	  </div>
+	</div>
+	);
+	})}
+	</div>
       </section>
+      
+      {/* Skills Section */}
+      <section
+	  id="skills"
+	  className="container max-w-5xl mx-auto py-12 md:py-16 lg:py-20"
+	>
+	  <h2 className="font-bold text-3xl md:text-5xl mb-12">
+	    Skills
+	  </h2>
+
+	  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+	    {skillCategories.map((category) => (
+	      <Card
+		key={category.key}
+		className={
+		  category.key === "machineLearning" ||
+		  category.key === "tools"
+		    ? "md:col-span-2"
+		    : ""
+		}
+	      >
+		<CardHeader>
+		  <CardTitle>{category.title}</CardTitle>
+		</CardHeader>
+
+		<CardContent>
+		  <div className="flex flex-wrap gap-2">
+		    {data.skills[category.key].map((skill) => (
+		      <Badge
+			  key={skill}
+			  variant="outline"
+			  className="px-3 py-1 bg-transparent text-foreground border-border"
+			>
+			  {skill}
+			</Badge>
+		    ))}
+		  </div>
+		</CardContent>
+	      </Card>
+	    ))}
+	  </div>
+	</section>
 
       {/* Testimonials Section */}
       {/*<section

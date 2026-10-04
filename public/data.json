@@ -187,8 +187,8 @@
       "company": "Justus-Liebig-Universität Gießen",
       "companyWebsite": "https://www.uni-giessen.de/en",
       "role": "Research Intern",
-      "startDate": "24.10.2025",
-      "endDate": "24.02.2026",
+      "startDate": "Oct 2025",
+      "endDate": "Feb 2026",
       "technologies": [
         "Apache Airflow",
         "Docker",
@@ -209,8 +209,8 @@
       "company": "Justus-Liebig-Universität Gießen",
       "companyWebsite": "https://www.uni-giessen.de/en",
       "role": "Research Intern",
-      "startDate": "15.11.2024",
-      "endDate": "15.06.2025",
+      "startDate": "Oct 2024",
+      "endDate": "Jun 2025",
       "technologies": [
 	"Python",
 	"Raman Spectroscopy",
@@ -235,13 +235,13 @@
     "degree": "Master of Science in Data Science",
     "description": "Ongoing master's program with 107 of at least 120 ECTS completed. Core modules include Advanced Data Analytics, High Performance Computing, Information Visualization, Artificial Intelligence I and II, Object-Oriented Programming for Data Science, Topological Data Analysis, and project modules in Data Science and Artificial Intelligence. Electives in Advanced Econometrics and Time Series Econometrics, plus a professional practice module.",
     "startDate": "Oct 2023",
-    "endDate": "Present"
+    "endDate": "Nov 2026"
   },
   {
     "id": "2",
     "institution": "IELTS (British Council, IDP, Cambridge English)",
-    "degree": "IELTS Academic, Overall Band 6.5 (CEFR B2)",
-    "description": "Certified English proficiency with scores of 6.5 in Listening, 8.0 in Reading, 6.0 in Writing and 6.0 in Speaking.",
+    "degree": "IELTS Academic, Overall Band (CEFR B2)",
+    "description": "Certified English proficiency.",
     "startDate": "Apr 2026",
     "endDate": "May 2026"
   },
@@ -273,7 +273,7 @@
     "id": "6",
     "institution": "Université de Dschang, Cameroon",
     "degree": "Licence (Bachelor) in Computer Science",
-    "description": "Completed three years of a fundamental computer science program (L1 to L3) with annual averages between 12.98 and 13.59 out of 20. Coursework covered algorithm design and analysis, software engineering, databases, data structures, web application engineering, data engineering, and object-oriented and C++ programming.",
+    "description": "Completed a three-year fundamental computer science program (L1-L3) with an overall grade of B. Coursework covered algorithm design and analysis, data structures, databases, software engineering, web application engineering, data engineering, and object-oriented programming (including C++)",
     "startDate": "Oct 2017",
     "endDate": "Aug 2020"
   }
