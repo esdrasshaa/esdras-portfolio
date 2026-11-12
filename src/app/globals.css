@@ -16,50 +16,49 @@ html {
     /* rule #C7C7C7 -> 0 0% 78% */
     /* sidetxt #F5F7FA -> 216 33% 97% */
 
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --background: 218 33% 97%;
+    --foreground: 215 50% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card-foreground: 215 50% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
     --primary: 215 41% 37%;
     --primary-foreground: 216 33% 97%;
-    --secondary: 215 25% 76%;
-    --secondary-foreground: 215 41% 37%;
-    --muted: 216 33% 97%;
-    --muted-foreground: 0 0% 20%;
+    --secondary: 215 45% 91%;
+    --secondary-foreground: 215 50% 20%;
+    --muted: 216 30% 94%;
+    --muted-foreground: 218 17% 41%;
     --accent: 215 25% 76%;
     --accent-foreground: 215 41% 37%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
-    --border: 0 0% 78%;
-    --input: 0 0% 78%;
+    --border: 216 30% 88%;
+    --input: 216 30% 88%;
     --ring: 215 41% 37%;
-    --radius: 0.5rem;
+    --radius: 1rem;
   }
 
   .dark {
-    --background: 215 41% 14%;
-    --foreground: 216 33% 97%;
-    --card: 215 41% 18%;
-    --card-foreground: 216 33% 97%;
-    --popover: 215 41% 18%;
-    --popover-foreground: 216 33% 97%;
-    --primary: 215 25% 76%;
-    --primary-foreground: 215 41% 20%;
-    --secondary: 215 30% 25%;
-    --secondary-foreground: 216 33% 97%;
-    --muted: 215 30% 25%;
-    --muted-foreground: 215 20% 70%;
-    --accent: 215 30% 25%;
-    --accent-foreground: 216 33% 97%;
+    --background: 218 52% 8%;
+    --foreground: 216 33% 95%;
+    --card: 217 46% 12%;
+    --card-foreground: 216 33% 95%;
+    --popover: 217 46% 12%;
+    --popover-foreground: 216 33% 95%;
+    --primary: 215 55% 72%;
+    --primary-foreground: 218 52% 8%;
+    --secondary: 216 42% 19%;
+    --secondary-foreground: 216 33% 95%;
+    --muted: 216 42% 16%;
+    --muted-foreground: 217 20% 68%;
+    --accent: 216 42% 19%;
+    --accent-foreground: 216 33% 95%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 20% 98%;
-    --border: 215 30% 25%;
-    --input: 215 30% 25%;
-    --ring: 215 25% 76%;
-  }
-}
+    --border: 216 38% 22%;
+    --input: 216 38% 22%;
+    --ring: 215 55% 72%;
+  }}
 
 .blog-post h1 {
   font-size: 2.5em;
@@ -186,7 +185,62 @@ html {
   }
 }
 
-body.dark {
-  background: #385987;
-  color: #f5f7fa;
+body {
+  @apply bg-background text-foreground antialiased;
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.12em] text-primary;
+  }
+
+  .section {
+    @apply border-t border-border py-16 md:py-20;
+  }
+
+  .section-title {
+    @apply mt-2 font-display text-3xl font-bold tracking-tight md:text-5xl;
+  }
+
+  .surface {
+    @apply rounded-2xl border border-border bg-card;
+  }
+
+  .pill {
+    @apply rounded-full bg-secondary px-2.5 py-1 text-xs text-secondary-foreground;
+  }
+}
+
+/* ---------- Hackathon photo parade ---------- */
+.parade-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.parade-track {
+  animation: parade 60s linear infinite;
+}
+
+.parade-mask:hover .parade-track,
+.parade-track:focus-within {
+  animation-play-state: paused;
+}
+
+@keyframes parade {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parade-track {
+    animation: none;
+  }
+  .parade-mask {
+    overflow-x: auto;
+  }
 }

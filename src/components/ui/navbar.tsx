@@ -10,27 +10,30 @@ export default async function Navbar() {
   const data = await getJSONData();
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-white shadow-sm dark:bg-gray-950">
-      <div className="container max-w-5xl mx-auto flex h-18 items-center justify-between py-2 px-4 md:px-6">
+    <header className="fixed top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-lg">
+      <div className="container mx-auto flex h-16 max-w-5xl items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center" prefetch={false}>
           <Image
             src="/assets/logo.png"
-            height={90}
-            width={90}
-            alt={"devfolio logo"}
+            height={43}
+            width={120}
+            className="h-9 w-auto"
+            alt={`${data.personalInfo.name} logo`}
           />
         </Link>
-        <nav className="hidden space-x-4 lg:flex">
-          <ThemeToggler />
+        <nav className="hidden items-center gap-1 lg:flex">
           {data.visual.navbar.links.map((item) => (
             <Link
               href={item.path}
               key={item.path}
-              className="text-sm transition-colors text-gray-350 hover:text-primary dark:hover:text-gray-50"
+              className="rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {item.label}
             </Link>
           ))}
+          <span className="ml-2 flex h-8 w-8 items-center justify-center rounded-full border border-border">
+            <ThemeToggler />
+          </span>
         </nav>
         <Sheet>
           <SheetTrigger asChild>

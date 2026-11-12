@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/ui/footer";
 import Navbar from "@/components/ui/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
-  title: "Logsfolio | Developer Portfolio",
+  title: "Esdras Shaa Prombo | Data Science Portfolio",
   description:
-    "A clean looking FREE portfolio template for devs. Built with NextJS & TailwindCSS",
+    "Data scientist (M.Sc.) focused on modelling, analysing and visualising numerical and text data. Projects, experience and hackathons.",
 };
 
 export default function RootLayout({
@@ -18,10 +26,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="font-sans">
         <Navbar />
-        <div className="h-20"></div>
+        <div className="h-16"></div>
         {children}
         <Footer />
       </body>

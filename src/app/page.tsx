@@ -2,14 +2,8 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import HackathonParade from "@/components/hackathonParade";
 import { getBlogPosts, getJSONData } from "@/lib/serverUtils";
 
 import Link from "next/link";
@@ -19,11 +13,12 @@ import {
   EnvelopeClosedIcon,
   GitHubLogoIcon,
   LinkedInLogoIcon,
-  GlobeIcon,
 } from "@radix-ui/react-icons";
 
 import { Avatar } from "@/components/ui/avatar";
 import {
+  ArrowDown,
+  ArrowUpRight,
   Download,
   Code2,
   FileText,
@@ -33,6 +28,7 @@ import {
   Wrench,
   Sigma,
   Sparkles,
+  Trophy,
   type LucideIcon,
 } from "lucide-react";
 
@@ -53,360 +49,356 @@ const skillCategories: {
 ] as const;
 
 const educationCategories = [
-  {
-    key: "degree",
-    title: "Academic Education",
-  },
-  {
-    key: "certificate",
-    title: "Certificates",
-  },
-  {
-    key: "language",
-    title: "Languages",
-  },
+  { key: "degree", title: "Academic Education" },
+  { key: "certificate", title: "Certificates" },
+  { key: "language", title: "Languages" },
 ] as const;
+
+function SectionHeader({
+  eyebrow,
+  title,
+  intro,
+}: {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+}) {
+  return (
+    <div className="mb-10 space-y-2 md:mb-12">
+      <span className="eyebrow">{eyebrow}</span>
+      <h2 className="section-title">{title}</h2>
+      {intro && <p className="max-w-2xl pt-1 text-muted-foreground">{intro}</p>}
+    </div>
+  );
+}
 
 export default async function Home() {
   const data = await getJSONData();
   const posts = await getBlogPosts();
+  const firstName = data.personalInfo.name.split(" ")[0];
 
   return (
     <main>
+      {/* ==================== HACKATHON PHOTO PARADE ==================== */}
+      {data.hackathons?.length > 0 && (
+        <HackathonParade hackathons={data.hackathons} />
+      )}
+
       {/* ==================== HERO SECTION ==================== */}
       <section
         id="home"
-        className="container mx-auto max-w-5xl py-12 md:py-16 lg:py-20"
+        className="container mx-auto max-w-5xl pb-16 pt-10 md:pb-20"
       >
-        <div className="flex flex-col items-center justify-center gap-12 lg:flex-row">
+        <div className="grid items-center gap-10 md:grid-cols-[auto_1fr]">
           {/* Profile Image */}
-          <div className="mx-auto w-1/2 lg:w-1/3">
+          <div className="relative mx-auto w-40 md:w-44">
+            <div className="absolute -inset-1.5 rounded-[2rem] bg-gradient-to-br from-primary to-primary/20 opacity-70 blur-md" />
             <Image
               src="/assets/profile.jpg"
               width={280}
               height={280}
               alt={`${data.personalInfo.name} profile`}
-              className="mx-auto aspect-square overflow-hidden rounded-full object-cover object-center"
+              className="relative aspect-square rounded-[1.75rem] object-cover object-center"
               priority
             />
           </div>
 
           {/* Introduction */}
-          <div className="w-full space-y-4 lg:w-2/3">
-            <div className="space-y-2">
-              <h1 className="text-4xl font-bold tracking-tighter md:text-5xl">
-                Hey 👋, I&apos;m {data.personalInfo.name}
-              </h1>
+          <div className="space-y-4">
+            <h1 className="font-display text-4xl font-bold tracking-tight md:text-6xl">
+              Hey, I&apos;m{" "}
+              <span className="bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
+                {firstName}
+              </span>
+              .
+            </h1>
+
+            <div className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-sm text-muted-foreground">
+              <span className="font-medium text-foreground">{data.personalInfo.title}</span>
+              <span>{data.personalInfo.location}</span>
             </div>
 
-            <p className="max-w-[600px] text-gray-500 dark:text-gray-400 lg:text-lg">
+            <p className="max-w-[60ch] text-muted-foreground lg:text-lg">
               {data.personalInfo.bio}
             </p>
 
             {/* Social / CV Buttons */}
-            <div className="flex flex-wrap items-center gap-3">
-              {/* GitHub */}
-              <Link
-                href={data.contactInfo.github}
-                prefetch={false}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <Button variant="secondary" size="icon">
-                  <GitHubLogoIcon className="h-4 w-4" />
-                </Button>
-              </Link>
-
-              {/* LinkedIn */}
-              <Link
-                href={data.contactInfo.linkedin}
-                prefetch={false}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <Button variant="secondary" size="icon">
-                  <LinkedInLogoIcon className="h-4 w-4" />
-                </Button>
-              </Link>
-
-              {/* Email */}
-              <Link
-                href={`mailto:${data.contactInfo.email}`}
-                aria-label="Email"
-              >
-                <Button variant="secondary" size="icon">
-                  <EnvelopeClosedIcon className="h-4 w-4" />
-                </Button>
-              </Link>
-
-              {/* CV */}
-              <a
-                href="/Lebenslauf_Esdras_Shaa_Prombo.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button className="gap-2">
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <a href="/Lebenslauf_Esdras_Shaa_Prombo.pdf" target="_blank" rel="noopener noreferrer">
+                <Button className="gap-2 rounded-xl">
                   <Download className="h-4 w-4" />
                   View CV
                 </Button>
               </a>
+
+              <a href="#hackathons">
+                <Button variant="outline" className="gap-2 rounded-xl">
+                  <ArrowDown className="h-4 w-4" />
+                  My hackathons
+                </Button>
+              </a>
+
+              <Link href={data.contactInfo.github} prefetch={false} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <Button variant="outline" size="icon" className="rounded-xl">
+                  <GitHubLogoIcon className="h-4 w-4" />
+                </Button>
+              </Link>
+
+              <Link href={data.contactInfo.linkedin} prefetch={false} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <Button variant="outline" size="icon" className="rounded-xl">
+                  <LinkedInLogoIcon className="h-4 w-4" />
+                </Button>
+              </Link>
+
+              <Link href={`mailto:${data.contactInfo.email}`} aria-label="Email">
+                <Button variant="outline" size="icon" className="rounded-xl">
+                  <EnvelopeClosedIcon className="h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ==================== EXPERIENCE SECTION ==================== */}
-      <section
-        id="experience"
-        className="container mx-auto max-w-5xl py-12 md:py-16 lg:py-20"
-      >
-        <h2 className="mb-12 text-3xl font-bold md:text-5xl">
-          Work Experience
-        </h2>
+      {/* ==================== HACKATHONS SECTION ==================== */}
+      {data.hackathons?.length > 0 && (
+        <section id="hackathons" className="section">
+          <div className="container mx-auto max-w-5xl">
+            <SectionHeader
+              eyebrow="Hackathons"
+              title="Building AI with real companies"
+              intro="Two challenges at the Futury Build Days in Frankfurt, each set by an industry partner with a real problem and real documents."
+            />
 
-        <div className="relative grid gap-10 pl-6 after:absolute after:inset-y-0 after:left-0 after:w-px after:bg-gray-500/20 dark:after:bg-gray-400/20">
-          {data.workExperience.map((exp) => (
-            <div key={exp.id} className="relative grid gap-1">
-              {/* Timeline Dot */}
-              <div className="absolute left-0 top-2 z-10 aspect-square w-3 translate-x-[-29.5px] rounded-full bg-gray-900 dark:bg-gray-50" />
+            <div className="grid gap-6 md:grid-cols-2">
+              {data.hackathons.map((event) => (
+                <article key={event.id} className="surface group flex flex-col overflow-hidden">
+                  <div className="relative aspect-video overflow-hidden">
+                    <Image
+                      src={event.cover}
+                      alt={`${event.shortTitle}: ${event.title}`}
+                      fill
+                      sizes="(min-width: 768px) 500px, 100vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <span className="absolute left-3.5 top-3.5 flex items-center gap-1.5 rounded-lg bg-black/70 px-2.5 py-1.5 font-mono text-[11px] uppercase tracking-wider text-white backdrop-blur">
+                      {/^\d/.test(event.result) && <Trophy className="h-3.5 w-3.5" />}
+                      {event.date} · {event.result}
+                    </span>
+                  </div>
 
-              <h4 className="text-xl font-medium">
-                {exp.role} @{" "}
-                <Link
-                  href={exp.companyWebsite}
-                  className="text-primary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {exp.company}
-                </Link>
-              </h4>
+                  <div className="grid gap-4 p-6">
+                    <span className="font-mono text-xs tracking-wide text-primary">{event.host}</span>
+                    <h3 className="font-display text-2xl font-semibold tracking-tight">{event.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{event.description}</p>
 
-              <div className="text-gray-500 dark:text-gray-400">
-                {exp.startDate} - {exp.endDate}
-              </div>
+                    <div className="grid grid-cols-3 gap-2.5">
+                      {event.facts.map((fact) => (
+                        <div key={fact.label} className="rounded-xl bg-muted p-3">
+                          <b className="block font-display text-xl tabular-nums">{fact.value}</b>
+                          <span className="block text-xs leading-snug text-muted-foreground">{fact.label}</span>
+                        </div>
+                      ))}
+                    </div>
 
-              <div className="mt-2">
-                <h6 className="font-medium">Key Responsibilities:</h6>
-
-                <ul className="list-disc pl-4 text-sm text-gray-500">
-                  {exp.keyResponsibilities.map((responsibility) => (
-                    <li key={responsibility}>{responsibility}</li>
-                  ))}
-                </ul>
-              </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {event.technologies.map((t) => (
+                        <span key={t} className="pill">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
-          ))}
+          </div>
+        </section>
+      )}
+
+      {/* ==================== EXPERIENCE SECTION ==================== */}
+      <section id="experience" className="section">
+        <div className="container mx-auto max-w-5xl">
+          <SectionHeader eyebrow="Experience" title="Work Experience" />
+
+          <div className="grid gap-4">
+            {data.workExperience.map((exp) => (
+              <div key={exp.id} className="surface grid gap-2 p-6 md:grid-cols-[170px_1fr] md:gap-6">
+                <div className="pt-1 font-mono text-sm text-muted-foreground">
+                  {exp.startDate} – {exp.endDate}
+                </div>
+
+                <div className="min-w-0">
+                  <h3 className="font-display text-xl font-semibold">
+                    {exp.role} @{" "}
+                    <Link href={exp.companyWebsite} className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+                      {exp.company}
+                    </Link>
+                  </h3>
+
+                  <ul className="mt-3 grid list-disc gap-1 pl-4 text-sm text-muted-foreground">
+                    {exp.keyResponsibilities.map((responsibility) => (
+                      <li key={responsibility}>{responsibility}</li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {exp.technologies.map((t) => (
+                      <span key={t} className="pill">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ==================== PROJECTS SECTION ==================== */}
-      <section
-        id="projects"
-        className="container mx-auto max-w-5xl py-12 md:py-16 lg:py-20"
-      >
-        <h2 className="mb-12 text-3xl font-bold md:text-5xl">
-          My Projects
-        </h2>
+      <section id="projects" className="section">
+        <div className="container mx-auto max-w-5xl">
+          <SectionHeader eyebrow="Projects" title="My Projects" />
 
-        <div className="grid grid-cols-1 gap-4 lg:gap-6">
-          {data.projects.map((project) => (
-            <Card
-              key={project.title}
-              className="flex flex-col lg:flex-row"
-            >
-              {/* Project Image */}
-              <div className="flex w-full items-center p-2 lg:w-1/3">
-                <Image
-                  src={project.cover}
-                  alt={`${project.title} project`}
-                  height={200}
-                  width={300}
-                  className="rounded-md object-cover"
-                />
-              </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {data.projects.map((project) => {
+              const hasRepo = project.code_repo_url && project.code_repo_url !== "#!";
+              return (
+                <article
+                  key={project.title}
+                  className="surface group flex flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
+                >
+                  <div className="relative aspect-[16/9] overflow-hidden bg-muted">
+                    <Image
+                      src={project.cover}
+                      alt={`${project.title} project`}
+                      fill
+                      sizes="(min-width: 768px) 500px, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
 
-              {/* Project Information */}
-              <div className="w-full lg:w-2/3">
-                <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
+                  <div className="flex flex-1 flex-col gap-3 p-6">
+                    <h3 className="font-display text-xl font-semibold">{project.title}</h3>
+                    <p className="text-sm text-muted-foreground">{project.description}</p>
 
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((technology) => (
-                      <Badge
-                        key={technology}
-                        variant="secondary"
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.technologies.map((technology) => (
+                        <span key={technology} className="pill">{technology}</span>
+                      ))}
+                    </div>
+
+                    {hasRepo && (
+                      <Link
+                        href={project.code_repo_url}
+                        prefetch={false}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-medium text-primary"
                       >
-                        {technology}
-                      </Badge>
-                    ))}
+                        <GitHubLogoIcon className="h-4 w-4" />
+                        Open repository
+                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      </Link>
+                    )}
                   </div>
-                </CardHeader>
-
-                <CardContent>
-                  <CardDescription>
-                    {project.description}
-                  </CardDescription>
-                </CardContent>
-
-                <CardFooter>
-                  <div className="flex space-x-3">
-                    {/* Live Demo
-                    <Link
-                      href={project.live_url}
-                      prefetch={false}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button size="sm">
-                        <GlobeIcon className="mr-2 h-3 w-3" />
-                        Live Demo
-                      </Button>
-                    </Link>
-                    */}
-
-                    {/* GitHub Repository */}
-                    <Link
-                      href={project.code_repo_url}
-                      prefetch={false}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button size="sm" variant="outline">
-                        <GitHubLogoIcon className="mr-2 h-3 w-3" />
-                        Open Repository
-                      </Button>
-                    </Link>
-                  </div>
-                </CardFooter>
-              </div>
-            </Card>
-          ))}
+                </article>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* ==================== EDUCATION SECTION ==================== */}
-      <section
-        id="education"
-        className="container mx-auto max-w-5xl py-12 md:py-16 lg:py-20"
-      >
-        <h2 className="mb-12 text-3xl font-bold md:text-5xl">
-          Education
-        </h2>
+      <section id="education" className="section">
+        <div className="container mx-auto max-w-5xl">
+          <SectionHeader eyebrow="Education" title="Education" />
 
-        <div className="grid gap-12">
-          {educationCategories.map((category) => {
-            const items = data.education.filter(
-              (education) => education.category === category.key
-            );
+          <div className="grid gap-12">
+            {educationCategories.map((category) => {
+              const items = data.education.filter(
+                (education) => education.category === category.key
+              );
 
-            if (items.length === 0) {
-              return null;
-            }
+              if (items.length === 0) {
+                return null;
+              }
 
-            return (
-              <div key={category.key}>
-                <h3 className="mb-6 text-2xl font-semibold">
-                  {category.title}
-                </h3>
+              return (
+                <div key={category.key}>
+                  <h3 className="mb-5 font-display text-2xl font-semibold">{category.title}</h3>
 
-                <div className="relative grid gap-10 pl-6 after:absolute after:inset-y-0 after:left-0 after:w-px after:bg-gray-500/20 dark:after:bg-gray-400/20">
-                  {items.map((education) => (
-                    <div
-                      key={education.id}
-                      className="relative grid gap-1"
-                    >
-                      {/* Timeline Dot */}
-                      <div className="absolute left-0 top-2 z-10 aspect-square w-3 translate-x-[-29.5px] rounded-full bg-gray-900 dark:bg-gray-50" />
-
-                      <h4 className="text-xl font-medium">
-                        {education.degree}
-                      </h4>
-
-                      <h5 className="font-medium">
-                        {education.institution}
-                      </h5>
-
-                      <div className="text-gray-500 dark:text-gray-400">
-                        {education.startDate} - {education.endDate}
+                  <div className="grid gap-4">
+                    {items.map((education) => (
+                      <div key={education.id} className="surface grid gap-2 p-6 md:grid-cols-[170px_1fr] md:gap-6">
+                        <div className="pt-1 font-mono text-sm text-muted-foreground">
+                          {education.startDate} – {education.endDate}
+                        </div>
+                        <div className="min-w-0">
+                          <h4 className="font-display text-lg font-semibold">{education.degree}</h4>
+                          <p className="font-medium text-primary">{education.institution}</p>
+                          {education.description && (
+                            <p className="mt-2 text-sm text-muted-foreground">{education.description}</p>
+                          )}
+                        </div>
                       </div>
-
-                      {education.description && (
-                        <p className="mt-2 text-sm text-gray-500">
-                          {education.description}
-                        </p>
-                      )}
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* ==================== SKILLS SECTION ==================== */}
-<section
-  id="skills"
-  className="container mx-auto max-w-5xl py-12 md:py-16 lg:py-20"
->
-  <div className="mb-12 space-y-3">
-    <span className="inline-block rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-primary">
-      Toolbox
-    </span>
-    <h2 className="text-3xl font-bold tracking-tight md:text-5xl">Skills</h2>
-    <p className="max-w-2xl text-muted-foreground">
-      The languages, methods and tools I use to turn data into insight.
-    </p>
-  </div>
+      <section id="skills" className="section">
+        <div className="container mx-auto max-w-5xl">
+          <SectionHeader
+            eyebrow="Toolbox"
+            title="Skills"
+            intro="The languages, methods and tools I use to turn data into insight."
+          />
 
-  <div className="grid grid-cols-1 gap-5 md:grid-cols-6">
-    {skillCategories.map(({ key, title, icon: Icon, span }) => {
-      const skills = data.skills[key];
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-6">
+            {skillCategories.map(({ key, title, icon: Icon, span }) => {
+              const skills = data.skills[key];
 
-      return (
-        <Card
-          key={key}
-          className={`group relative overflow-hidden border-border/60 bg-card/50 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 ${span}`}
-        >
-          {/* gradient glow on hover */}
-          <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-gradient-to-br from-primary/30 to-transparent opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-
-          <CardHeader className="relative pb-4">
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 text-primary ring-1 ring-primary/20 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <CardTitle className="text-lg">{title}</CardTitle>
-              </div>
-              <span className="text-xs tabular-nums text-muted-foreground">
-                {String(skills.length).padStart(2, "0")}
-              </span>
-            </div>
-            <div className="mt-4 h-px w-full bg-gradient-to-r from-primary/40 via-border to-transparent" />
-          </CardHeader>
-
-          <CardContent className="relative">
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill) => (
-                <Badge
-                  key={skill}
-                  variant="secondary"
-                  className="rounded-full border border-transparent bg-secondary/60 px-3 py-1 text-sm font-normal transition-colors duration-200 hover:border-primary/30 hover:bg-primary hover:text-primary-foreground"
+              return (
+                <Card
+                  key={key}
+                  className={`group relative overflow-hidden rounded-2xl border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 ${span}`}
                 >
-                  {skill}
-                </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      );
-    })}
-  </div>
-</section>
+                  <CardHeader className="pb-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-primary transition-transform duration-300 group-hover:rotate-3 group-hover:scale-110">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <CardTitle className="font-display text-lg">{title}</CardTitle>
+                      </div>
+                      <span className="font-mono text-xs tabular-nums text-muted-foreground">
+                        {String(skills.length).padStart(2, "0")}
+                      </span>
+                    </div>
+                  </CardHeader>
+
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {skills.map((skill) => (
+                        <Badge
+                          key={skill}
+                          variant="secondary"
+                          className="rounded-full px-3 py-1 text-sm font-normal transition-colors duration-200 hover:bg-primary hover:text-primary-foreground"
+                        >
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* ==================== TESTIMONIALS ==================== */}
 

@@ -98,7 +98,33 @@ export interface Certification {
   date: string;
 }
 
+export interface HackathonImage {
+  src: string;
+  width: number;
+  height: number;
+}
+
+export interface HackathonFact {
+  value: string;
+  label: string;
+}
+
+export interface Hackathon {
+  id: string;
+  host: string;
+  shortTitle: string;
+  title: string;
+  date: string;
+  result: string;
+  description: string;
+  facts: HackathonFact[];
+  technologies: string[];
+  cover: string;
+  images: HackathonImage[];
+}
+
 export interface Data {
+  hackathons: Hackathon[];
   personalInfo: PersonalInfo;
   contactInfo: ContactInfo;
   skills: Skills;
